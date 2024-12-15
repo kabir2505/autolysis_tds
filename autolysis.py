@@ -155,6 +155,7 @@ def generic_analysis(which):
 #-------------------SURE-------------------------
 def plot_missing_data():
     """
+    Plotting data for data visualization
     Plot a bar chart of the proportion of missing data for each feature in the dataset.
 
     This function calculates the proportion of missing values for each column in the 
@@ -226,6 +227,7 @@ def detect_outliers(columns):
 
 def plot_correlation():
     """
+     Plotting data for DATA VISUALIZATION
     Plot and save the correlation matrix for numeric columns in the dataset.
     
     Parameters:
@@ -309,6 +311,9 @@ def perform_clustering_for_story(n_clusters):
 
 def plot_categorical_columns(max_categories=5, max_unique=230):
     """
+    
+     Plotting data for DATA VISUALIZATION
+    
     Draw countplots for categorical columns, limiting the number of categories to the top N most frequent,
     and skipping columns with more than a specified number of unique categories.
     
@@ -373,6 +378,8 @@ def plot_categorical_columns(max_categories=5, max_unique=230):
 #----------------------------function calling----------------------
 def plot_trends_over_time(time_column, value_column, plot_title="Trend Analysis"):
     """
+     Plotting data for DATA VISUALIZATION
+    
     Plot trends of a specific column over time.
     
     :param data: DataFrame containing data.
@@ -450,6 +457,7 @@ def plot_histograms_for_numerical_columns(cols, ncols=3):
 
 def create_and_plot_network(source_col, target_col,):
     """
+     Plotting data for DATA VISUALIZATION
     Save network graphs as images.
 
 
@@ -481,8 +489,8 @@ def safe_run(func, *args, **kwargs):
 safe_run(plot_correlation)
 safe_run(plot_categorical_columns)
 safe_run(plot_missing_data)
-anomalies_dict=safe_run(detect_outliers, data.select_dtypes(["float", "int"]).columns)
-clustering_info=safe_run(perform_clustering_for_story, n_clusters=4)
+
+
 
 
 #----------LLM Code-----------------------------------------------
@@ -592,8 +600,7 @@ send_prompt = {
 }
 r = requests.post(url="https://aiproxy.sanand.workers.dev/openai/v1/chat/completions", headers=headers, json=send_prompt)
 response_data=r.json()
-# print('output',response_data
-#       )
+
 
 def parse_function_calls(response_data):
     """
@@ -714,33 +721,11 @@ def execute_function_calls(function_calls):
 execution_results = execute_function_calls(function_calls)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#--------------------
+#--------#image urls for exhibition of VISION CAPABILITIES in the Story-----------------
 
 def resize_image(image_path, size=(512, 512)):
     """
-    Resizes an image to the specified size.
+    Resizes an image to the specified size for  exhibition of VISION CAPABILITIES in the Story
     :param image_path: Path to the image file.
     :param size: Tuple specifying the desired image size (width, height).
     :return: Path to the resized image.
@@ -753,7 +738,7 @@ def resize_image(image_path, size=(512, 512)):
 
 def encode_image(image_path):
     """
-    Encodes a given image file to a Base64 string.
+    Encodes a given image file to a Base64 string for  exhibition of VISION CAPABILITIES in the Story
     :param image_path: Path to the image file.
     :return: Base64 encoded string of the image.
     """
@@ -764,6 +749,7 @@ def encode_image(image_path):
 png_files = glob.glob(f"*.png")
 
 # Resize and encode all images
+
 image_urls = []
 for i,file in enumerate(png_files):
     resized_file = resize_image(file)  # Resize the image to 512x512
@@ -818,17 +804,7 @@ send_story_prompt={
         Please respond with: "Sacred Scroll of Statistics received and decoded. Awaiting part 2 .
             """
         },
-        # {
-        #     "role":"user",
-        #     "content":f"""
-            
-        #     From the depths of the dataset dimension comes the Chronicles of Anomalies and K-means clustering information:
-
-        #     {anomalies_dict} and {clustering_info}
-        #     Please respond with: "Chronicles of Anomalies documented. Awaiting part 3 of 4."
-        #     """
-        # },
-        
+   
         {
             "role":"user",
             "content":[
@@ -846,8 +822,8 @@ send_story_prompt={
                  {
                      "type": "image_url",
                      "image_url": {
-                         "url": image_urls[0]['image_url']['url'],
-                         "path": image_urls[0]['image_url']['path'],
+                         "url": image_urls[0]['image_url']['url'], # exhibition of VISION CAPABILITIES in the Story
+                         "path": image_urls[0]['image_url']['path'], # exhibition of VISION CAPABILITIES in the Story
                          "detail": "low"
                      }
                  }
